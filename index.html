@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Music Player</title>
+  <!-- Load FontAwesome icons -->
+
+  <!-- Load the custom CSS style file -->
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div class="player">
+    <img src="./assets/images/lemonade.png" id="background" />
+    <div class="details">
+      <div class="now-playing" width="100%" height = "50%">PLAYING x OF y</div>
+      <img class="track-art" >
+      <div class="track-name">Track Name</div>
+      <div class="track-artist">Track Artist</div>
+    </div>
+    <br>
+    <div class="buttons">
+      <!--<div class="prev-track" onclick="prevTrack()"><i class="fa fa-step-backward fa-2x">></i></div>
+      <div class="playpause-track" onclick="playpauseTrack()"><i class="fa fa-play-circle fa-5x"><</i></div>
+      <div class="next-track" onclick="nextTrack()"><i class="fa fa-step-forward fa-2x"></i></div>
+      -->
+      
+      <img src="./assets/icons/backward.png" class="prev-track" onclick="prevTrack()" id="previous-song" />
+      <img src="./assets/icons/play.png" class="playpause-track"  onclick="playpauseTrack()" id="play-pause" />
+      <img src="./assets/icons/forward.png" onclick="nextTrack()" class="next-track" id="next-song" />
+      
+    </div>
+    <div class="slider_container">
+      <div class="current-time">00:00</div>
+      <input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()">
+      <div class="total-duration">00:00</div>
+    </div>
+    <div class="slider_container">
+      <img src="./assets/icons/sound.png" class="sound-track"/>
+      <input type="range" min="1" max="100" value="99" class="volume_slider" onchange="setVolume()">
+    </div>
+  </div>
+
+  <!-- Load the main script for the player -->
+  <script src="main.js"></script>
+</body>
+</html>
