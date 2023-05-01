@@ -29,6 +29,12 @@ let track_list = [
     path: "assets/music/telephone.mp3"
   },
   {
+    name: "The Next Episode",
+    artist: "Snoop Dog",
+    image: "assets/images/snoop-dog-smoking.gif",
+    path: "assets/music/Dr. Dre feat. Snoop Dogg - The Next Episode.mp3",
+  },
+  {
     name: "Toxibombs",
     artist: "Trapsa",
     image: "assets/images/phychdelic.jpg",
