@@ -23,17 +23,18 @@ let curr_track = document.createElement('audio');
 // Define the tracks that have to be played
 let track_list = [
   {
-    name: "Telephone",
-    artist: "Lady Gaga & Beyonce",
-    image: "assets/images/Studio_Project (1) (2).gif",
-    path: "assets/music/telephone.mp3"
-  },
-  {
     name: "The Next Episode",
     artist: "Snoop Dog",
     image: "assets/images/snoop-dog-smoking.gif",
     path: "assets/music/Dr. Dre feat. Snoop Dogg - The Next Episode.mp3",
   },
+  {
+    name: "Telephone",
+    artist: "Lady Gaga & Beyonce",
+    image: "assets/images/Studio_Project (1) (2).gif",
+    path: "assets/music/telephone.mp3"
+  },
+ 
   {
     name: "Toxibombs",
     artist: "Trapsa",
