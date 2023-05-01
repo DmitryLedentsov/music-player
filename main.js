@@ -12,6 +12,7 @@ let volume_slider = document.querySelector(".volume_slider");
 let curr_time = document.querySelector(".current-time");
 let total_duration = document.querySelector(".total-duration");
 let player = document.querySelector(".player");
+let background = document.querySelector("#background");
 let track_index = 0;
 let isPlaying = false;
 let updateTimer;
@@ -22,38 +23,25 @@ let curr_track = document.createElement('audio');
 // Define the tracks that have to be played
 let track_list = [
   {
-    name: "Night Owl",
-    artist: "Broke For Free",
-    image: "assets/images/dontstartnow.png",
-    path: "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/WFMU/Broke_For_Free/Directionless_EP/Broke_For_Free_-_01_-_Night_Owl.mp3"
+    name: "Telephone",
+    artist: "Lady Gaga & Beyonce",
+    image: "assets/images/Studio_Project (1) (2).gif",
+    path: "assets/music/telephone.mp3"
   },
   {
-    name: "Enthusiast",
-    artist: "Tours",
-    image: "https://images.pexels.com/photos/3100835/pexels-photo-3100835.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250&w=250",
-    path: "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Tours/Enthusiast/Tours_-_01_-_Enthusiast.mp3"
+    name: "Toxibombs",
+    artist: "Trapsa",
+    image: "assets/images/phychdelic.jpg",
+    path: "assets/music/Trampsta & Heavy Drop - Toxibombs.mp3"
   },
   {
-    name: "Shipping Lanes",
-    artist: "Chad Crouch",
-    image: "https://images.pexels.com/photos/1717969/pexels-photo-1717969.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250&w=250",
-    path: "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Chad_Crouch/Arps/Chad_Crouch_-_Shipping_Lanes.mp3",
+    name: "Parabola",
+    artist: "Tool",
+    image: "assets/images/visionary.jpg",
+    path: "assets/music/Tool - Parabol + Parabola.mp3",
   },
 ];
 
-function random_bg_color() {
-
-  // Get a number between 64 to 256 (for getting lighter colors)
-  let red = Math.floor(Math.random() * 256) + 64;
-  let green = Math.floor(Math.random() * 256) + 64;
-  let blue = Math.floor(Math.random() * 256) + 64;
-
-  // Construct a color withe the given values
-  let bgColor = "rgb(" + red + "," + green + "," + blue + ")";
-
-  // Set the background to that color
-  //document.body.style.background = bgColor;
-}
 
 function loadTrack(track_index) {
   clearInterval(updateTimer);
@@ -63,14 +51,14 @@ function loadTrack(track_index) {
 
   track_art.src = track_list[track_index].image ;
   
-  //player.style.backgroundImage = "url(" + track_list[track_index].image + ")";
+  background.src = track_list[track_index].image ;
   track_name.textContent = track_list[track_index].name;
   track_artist.textContent = track_list[track_index].artist;
   now_playing.textContent = "PLAYING " + (track_index + 1) + " OF " + track_list.length;
 
   updateTimer = setInterval(seekUpdate, 1000);
   curr_track.addEventListener("ended", nextTrack);
-  random_bg_color();
+
 }
 
 function resetValues() {
@@ -147,5 +135,5 @@ function seekUpdate() {
   }
 }
 
-playTrack();
+window.onload = () => playTrack();
 

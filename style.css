@@ -16,6 +16,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
+  overflow: hidden;
 }
 #background {
   position: absolute;
@@ -35,13 +36,13 @@ body {
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  margin-top: 25px;
+  margin-top: 10px;
 }
 
 .track-art {
   margin: 2px;
-  height: 100%;
-  width: 100%;
+  height: 70%;
+  width: 70%;
   background-size: cover;
   border-radius: 15%;
 }
@@ -68,7 +69,7 @@ body {
 }
 
 .playpause-track, .prev-track, .next-track, .sound-track {
-  padding: 25px;
+  padding: 10px;
   opacity: 0.8;
 
   /* Smoothly transition the opacity */
@@ -153,10 +154,3 @@ body {
   padding: 10px;
 }
 
-i.fa-volume-down, i.fa-volume-up {
-  padding: 10px;
-}
-
-i.fa-play-circle, i.fa-pause-circle, i.fa-step-forward, i.fa-step-backward {
-  cursor: pointer;
-}
