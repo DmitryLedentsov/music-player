@@ -17,10 +17,13 @@ let track_index = 0;
 let isPlaying = false;
 let updateTimer;
 
-// Create new audio element
+
 let curr_track = document.createElement('audio');
 
-// Define the tracks that have to be played
+let canvas = document.getElementById("visual");
+let ctx = canvas.getContext("2d");
+let context,src,analyser;
+// список треков
 let track_list = [
   {
     name: "The Next Episode",
@@ -50,6 +53,75 @@ let track_list = [
 ];
 
 
+
+function visualize(){ 
+
+  curr_track.crossOrigin ="anonymous";
+  context = new (window.AudioContext || window.webkitAudioContext)();
+  src = context.createMediaElementSource(curr_track);
+// analyser = analyser?analyser: context.createAnalyser();
+
+  analyser = context.createAnalyser();
+
+  src.connect(analyser);
+  analyser.connect(context.destination);
+
+  analyser.fftSize = 256;
+
+  var bufferLength = analyser.frequencyBinCount;
+  console.log(bufferLength);
+
+  var dataArray = new Uint8Array(bufferLength);
+
+  
+  const barWidth = canvas.width / 2 / bufferLength; //ширина столбца
+
+  let x = 0; 
+
+  function animate() {
+    x = 0;
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // чистим
+    analyser.getByteFrequencyData(dataArray); // =
+    drawVisualizer({ bufferLength, dataArray, barWidth });
+    requestAnimationFrame(animate); // встроенный метод вызова анимации
+  }
+
+  const drawVisualizer = ({ bufferLength, dataArray, barWidth }) => {
+    let barHeight;
+    let k = 0.2;
+    let mx = Math.max(...dataArray);//максимум чтобы относительно него вычислять высоту
+    for (var i = 0; i < bufferLength; i++) {
+      barHeight = dataArray[bufferLength-i]/mx*canvas.height; //-i для вогнутой кривой
+      
+      
+      var r = barHeight + (25 * (i/bufferLength));
+      var g = 50;//250 * (i/bufferLength);
+      var b = 50;//050;
+
+      ctx.fillStyle = "rgba(" + r + "," + g + "," + b + ")";
+      ctx.fillRect(canvas.width/2-x, canvas.height - barHeight, barWidth, barHeight);
+
+      x += barWidth ;
+    }
+
+    for (var i = 0; i < bufferLength; i++) {
+      barHeight = dataArray[bufferLength-i]/mx*canvas.height;
+      
+      
+      var r = barHeight + (25 * (i/bufferLength));
+      var g = 50;//250 * (i/bufferLength);
+      var b = 50;//050;
+
+      ctx.fillStyle = "rgba(" + r + "," + g + "," + b + ")";
+      ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+
+      x += barWidth ;
+    }
+  }
+
+  animate();
+};
+
 function loadTrack(track_index) {
   clearInterval(updateTimer);
   resetValues();
@@ -58,6 +130,7 @@ function loadTrack(track_index) {
 
   track_art.src = track_list[track_index].image ;
   
+
   background.src = track_list[track_index].image ;
   track_name.textContent = track_list[track_index].name;
   track_artist.textContent = track_list[track_index].artist;
@@ -86,6 +159,7 @@ function playTrack() {
   curr_track.play();
   isPlaying = true;
   playpause_btn.src = "assets/icons/pause.png";
+  
 }
 
 function pauseTrack() {

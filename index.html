@@ -26,7 +26,7 @@
       -->
       
       <img src="./assets/icons/backward.png" class="prev-track" onclick="prevTrack()" id="previous-song" />
-      <img src="./assets/icons/play.png" class="playpause-track"  onclick="playpauseTrack()" id="play-pause" />
+      <img src="./assets/icons/play.png" class="playpause-track"  onclick="playpauseTrack(); visualize()" id="play-pause" />
       <img src="./assets/icons/forward.png" onclick="nextTrack()" class="next-track" id="next-song" />
       
     </div>
@@ -39,6 +39,9 @@
       <img src="./assets/icons/sound.png" class="sound-track"/>
       <input type="range" min="1" max="100" value="99" class="volume_slider" onchange="setVolume()">
     </div>
+    <canvas id="visual">
+
+    </canvas>
   </div>
 
   <!-- Load the main script for the player -->
